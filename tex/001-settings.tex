@@ -1,0 +1,110 @@
+%
+% パッケージの選択
+%
+\usepackage{luatexja}% 日本語に
+\usepackage[haranoaji,deluxe]{luatexja-preset}% フォント指定
+\renewcommand{\kanjifamilydefault}{\gtdefault}% 既定をゴシック体に
+\usepackage{url}              % LaTeXの文章内にURLを貼りたいとき
+\usepackage{hyperref}         % TeX 文書（DVI、PDF など）に HTML と同じハイパーリンク 機能を加えるためのマクロ
+\usepackage{siunitx}          % LATEX で SI単位（国際単位系）を出力する
+\usepackage{dcolumn}          % 小数点揃え
+\usepackage{enumitem}         % リスト環境のレイアウトを制御
+\usepackage{booktabs}         % 表作成
+\usepackage{multirow}         % 表作成時に表を縦結合する
+\usepackage{hhline}           % 表作成時に２重枠線
+\usepackage{array}            % array 環境と tabular 環境の拡張
+\usepackage{nicematrix,booktabs,caption} % 表の上部、中、下部に応じた太さの罫線を提供
+\usepackage{threeparttable}   % 表の直下に脚注をつける
+\usepackage{ulem}             % 打消し線などの文字装飾
+\usepackage{graphicx}         % graphics パッケージの拡張
+\usepackage{tikz}             % TeX 用の描画パッケージ
+\usepackage{
+    amsmath, % 環境
+    amssymb, % 記号
+    amsfonts % 特殊文字
+}                             % amsmathの数式環境
+\usetikzlibrary{positioning}     % ”positioning”ライブラリ
+\usetikzlibrary{shapes.callouts} % 吹き出しの形を使うためにshapesライブラリを利用します
+\usepackage[absolute,overlay]{textpos} % textposパッケージ
+%\usepackage[colorgrid,gridunit=pt,texcoord]{eso-pic}
+             % eso-picパッケージを使ってスライドの上からグリッドを表示、リリース時は消しておく
+%\usepackage{layout}
+             % layout パッケージもリリース時は消す
+%
+% デザインの選択
+%     ここではテーマとしてmetropolisを読込
+%
+\usetheme[
+    block=fill, % ブロックに背景をつける
+    numbering=fraction % 合計ページ数を表示
+]{metropolis}
+
+%
+% ここからはページの見え方の設定
+%
+% ページ番号
+\setbeamerfont{frame numbering}{size=\large}
+%
+% CUD 配色の作成
+% cf. http://bit.ly/2G99WCG
+\definecolor{cud_blue}{rgb}{.109803922,.349019608,.682352941}
+\definecolor{cud_green}{rgb}{.282352941,.639215686,.407843137}
+\definecolor{cud_orange}{rgb}{.929411765,.564705882,.156862745}
+\definecolor{cud_red}{rgb}{1.,.156862745,0.}
+\definecolor{cud_yellow}{rgb}{.98039215686,.96078431372., .0}
+\definecolor{cud_lightgray}{rgb}{.784313725,.784313725,.796078431}
+\definecolor{cud_lightpink}{rgb}{1.,.819607843,.819607843}
+%
+% 基本色の変更
+\setbeamercolor{normal text}{fg=cud_blue}
+\setbeamercolor{example text}{fg=cud_green}
+\setbeamercolor{alerted text}{fg=cud_orange}
+%
+% Navigation symbol は不要なので消す
+\setbeamertemplate{navigation symbols}{}
+%
+% 見出しのスペースを消したい
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=0.75ex]{frametitle} % htで直接指定
+    \hspace*{1ex}\insertframetitle % 左margin + hspaceから始める
+  \end{beamercolorbox}
+}
+%
+% 図表番号を「図1」「表1」とかにする
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\setbeamertemplate{caption}[numbered]
+%
+% 図とキャプションの間の余白
+\setlength\abovecaptionskip{0pt}
+\setlength\belowcaptionskip{0pt}
+%
+% highlight マクロ tasusu.github.io/tikz.html から頂きました
+\newcommand{\highlight}[2][yellow]{\tikz[baseline=(x.base)]{\node[rectangle,rounded corners,fill=#1](x){#2};}}
+\newcommand{\highlightcap}[3][yellow]{\tikz[baseline=(x.base)]{\node[rectangle,rounded corners,fill=#1!10](x){#2} node[below of=x, color=#1]{#3};}}
+%
+% Erase マクロ lilaboc.work/archives/17240764.html から頂きました
+\newcommand{\Add}[1]{\textcolor{cud_red}{#1}}
+\newcommand{\Erase}[1]{\textcolor{cud_red}{\sout{\textcolor{cud_blue}{#1}}}}
+%
+%footer修正
+\def\logoC{lowerleft.png}
+\def\logoD{by.png}
+\makeatletter
+\setbeamertemplate{footline}{
+    \begin{columns}[totalwidth=160mm]
+      \begin{column}{24.1mm}
+        \includegraphics[width=24.1mm, height=5mm]{images/\logoC}
+      \end{column}
+      \begin{column}{108mm}
+         {\scriptsize \color{cud_lightgray} \insertshortinstitute/\insertshortdate{}(\insertshortauthor - \input{VERSION.txt}) }
+      \end{column}
+      \begin{column}{12mm}
+         {\scriptsize \color{cud_green} \rightline{ \insertframenumber{} / \inserttotalframenumber}}
+      \end{column}
+      \begin{column}{15mm}
+        \includegraphics[width=15mm, height=5mm]{images/\logoD}
+      \end{column}
+    \end{columns}
+}

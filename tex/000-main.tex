@@ -1,0 +1,17 @@
+\documentclass[               %
+  unicode,                    % 文字コードの指定
+  mathserif,                  %
+  m,                          % vertical position of text: (t,m,b)
+  % handout,                  % for printing slides
+  aspectratio=169,            % 画面サイズを(16:9)にする
+  12pt,                       % フォント基本サイズを12ptにします
+  % compress,
+  unknownkeysallowed
+]{beamer}
+%
+% 各種設定用ファイルの読み込み：ここのファイル名は決め打ちにさせてください
+%
+  \input{001-settings}   % 資料毎に変えない設定を読み込む
+  \input{002-variables}  % 資料毎に変える設定を読み込む
+  \input{003-pagelist}   % 各章毎に分割したソースファイルを順番に読込
+\end{document}

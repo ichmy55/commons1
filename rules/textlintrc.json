@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "latex2e"
+  ],
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+      "preset-ja-spacing": true,
+      "prh": {
+        "rulePaths": [
+          "src/commons/rules/prh.yml"
+        ]
+      }
+  }
+}

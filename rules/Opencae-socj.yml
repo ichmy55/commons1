@@ -1,0 +1,85 @@
+# Rules for OpenFOAM マニュアル和訳における LaTeX コーディング・ルール
+
+version: 1
+
+# 以下のルールを参考にして辞書化(一部だけですが)
+# https://www.opencae.or.jp/activity/translation/openfoam_latex/
+
+rules:
+  # 以下の漢字の送り仮名には，「本則」と「許容」の 2 パターンあるが，本書では全て本則に統一する．
+  - pattern: 当る
+    expected: 当たる
+  - pattern: 表す
+    expected: 表わす
+  - pattern: 著す
+    expected: 著わす
+  - pattern: 現われる
+    expected: 現れる
+  - pattern: 浮ぶ
+    expected: 浮かぶ
+  - pattern: 打ち合せ
+    expected: 打ち合わせ
+  - pattern: 打合せ
+    expected: 打ち合わせ
+  - pattern: 移り変り
+    expected: 移り変わり
+  # 以下の漢字は当て字であり，多くの人の目にふれる文書にはふさわしくないので使用しない．
+  - pattern: 如何に
+    expected: いかに
+  - pattern: 何時
+    expected: いつ
+  - pattern: 美味しい
+    expected: おいしい
+  - pattern: 鍛冶
+    expected: かじ
+  - pattern: 瓦斯
+    expected: ガス
+  - pattern: 硝子
+    expected: ガラス
+  - pattern: 肌理
+    expected: きめ
+  - pattern: 誤魔化す
+    expected: ごまかす
+  - pattern: 流石
+    expected: さすが
+  - pattern: 湿気る
+    expected: しける
+  - pattern: 尻尾
+    expected: しっぽ
+  - pattern: 容易い
+    expected: たやすい
+  - pattern: 出鱈目
+    expected: でたらめ
+  - pattern: 何故
+    expected: なぜ
+  - pattern: 流行る
+    expected: はやる
+  - pattern: 相応しい
+    expected: ふさわしい
+  - pattern: 吹雪く
+    expected: ふぶく
+  - pattern: 真面目
+    expected: まじめ
+  - pattern: 不味い
+    expected: まずい
+  - pattern: 真似る
+    expected: まねる
+  - pattern: 浮腫み
+    expected: むくみ
+  - pattern: 鍍金
+    expected: メッキ
+  - pattern: 滅多に
+    expected: めったに
+  - pattern: 減り張り
+    expected: メリハリ
+  - pattern: 所以
+    expected: ゆえん
+  # 専門用語によっては表記に複数の流儀があるが，本書では以下のように統一する．【要更新】
+  - pattern: 粘度
+    expected: 粘性係数
+  - pattern: スペクトラム
+    expected: スペクトル
+  - pattern: 線型
+    expected: 線形
+  - pattern: 函数
+    expected: 関数

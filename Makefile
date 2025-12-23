@@ -27,7 +27,7 @@ include variables.mk
 # ソースファイル一覧
 #
 SRCDIR  := src/$(DEST_PDF)
-SRCDIR2 := src/commons
+SRCDIR2 := src/commons1
 SRCS    := $(wildcard  $(SRCDIR)/*.tex)  $(wildcard  $(SRCDIR)/*.bst)  $(wildcard  $(SRCDIR)/*.bib)
 SRCS2   := $(wildcard  $(SRCDIR)/images/*)
 SRCS3   := $(wildcard  $(SRCDIR2)/*.tex)

@@ -29,7 +29,7 @@
 | release-drafter.yml    | リリースを作成し、バージョンを更新します          |                  |         | 〇        |
 | release-update.yml     | 上記リリースにPDFファイルを追記します             |                  |         | 〇        |
 
-(※注1)：PDFファイルのbuild用のDockerfileが変更されたときのみ走ります.  
+(※注1)：beamer-exampleレポジトリでPDFファイルbuild用のDockerfileが変更されたときのみ走ります.  
 
 (3) 設定ファイル  
 上記実施に必要な設定ファイルは,以下に記載しています.  

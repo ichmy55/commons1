@@ -1,0 +1,15 @@
+name:  JOBS at push to main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+
+jobs:
+  release-drafter:
+    uses: ./.github/workflows/release-drafter.yml

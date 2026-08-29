@@ -1,7 +1,7 @@
 #
 # Tex をコンパイルする環境をDocker上に作成する
 #
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

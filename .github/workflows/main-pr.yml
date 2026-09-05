@@ -1,0 +1,14 @@
+name: main-pull request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  actionlint-reviewdog:
+    uses: ./.github/workflows/actionlint-reviewdog.yml

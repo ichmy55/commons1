@@ -16,6 +16,7 @@ RUN apt -y install texlive-full
 RUN apt -y install fonts-firacode fonts-noto
 RUN apt -y install nodejs npm
 RUN npm install -g textlint textlint-plugin-latex2e textlint-rule-preset-japanese textlint-rule-preset-ja-spacing textlint-filter-rule-comments textlint-rule-prh
+RUN bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash) latest /usr/local/bin
 
 #
 # コンパイル環境を作成します.

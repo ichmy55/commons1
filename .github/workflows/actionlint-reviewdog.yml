@@ -1,0 +1,18 @@
+name: actionlint-reviewdog
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+      - uses: reviewdog/action-actionlint@v1.73.4

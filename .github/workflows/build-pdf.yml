@@ -1,0 +1,61 @@
+name: Build the beamer PDF image
+
+on:
+  workflow_call:
+    outputs:
+      name_pdf:
+        description: "The name of pdf"
+        value: ${{ jobs.build.outputs.name_pdf }}
+
+jobs:
+  build:
+    name: Build the beamer PDF  image
+    runs-on: ubuntu-26.04
+    outputs:
+      name_pdf: ${{ steps.nameofpdf.outputs.DEST_PDF }}
+    container:
+      image : ghcr.io/ichmy55/beamer-example/texcomp:main
+      options: --user 1001:118
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+      - name: Get latest release tag
+        id: get_tag
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const repo = context.repo;
+            const { data } = await github.rest.repos.getLatestRelease({
+                owner: repo.owner,
+                repo: repo.repo,
+            });
+            let tag = data.tag_name;
+            console.log(data)
+            const regex = /sprint(\d+)/;
+            const match = tag.match(regex);
+            if (match) {
+              const sprintNumber = parseInt(match[1]);
+              tag = sprintNumber + 1;
+            }
+            return tag;
+      - name: "Overwrite the VERSION.txt"
+        env:
+          RESULT: '${{ steps.get_tag.outputs.result }}'
+        run: echo "$RESULT" > VERSION.txt
+
+      - name: "build PDF"
+        run:  make localbuild
+
+      - name: get the pdf name
+        id: nameofpdf
+        run:  make name  >> "$GITHUB_OUTPUT"
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v7
+        with:
+          name: dest_pdf
+          path: dist/*
+          retention-days: 5

@@ -1,0 +1,12 @@
+name: develop push
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is a placeholder workflow."

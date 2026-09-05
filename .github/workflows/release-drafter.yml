@@ -2,6 +2,13 @@ name: Release Drafter
 
 on:
   workflow_call:
+    outputs:
+      release_id:
+        description: "ID of release"
+        value: ${{ jobs.release_draft.outputs.release_id }}
+      tag_name:
+        description: "tag name"
+        value: ${{ jobs.release_draft.outputs.tag_name }}
 
 permissions:
   contents: write
@@ -10,9 +17,14 @@ permissions:
 jobs:
   release_draft:
     runs-on: ubuntu-26.04
+    outputs:
+      release_id: ${{ steps.create_release.outputs.id }}
+      tag_name:   ${{ steps.create_release.outputs.tag_name }}
     steps:
       - name: checkout
         uses: actions/checkout@v7
+        with:
+          submodules: recursive
       - name: create_release
         id:   create_release
         uses: release-drafter/release-drafter@v7

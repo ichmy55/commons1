@@ -1,0 +1,39 @@
+name: Release Update
+
+on:
+  workflow_call:
+    inputs:
+      name_pdf:
+        description: Name of the pdf
+        required: true
+        type: string
+      release_id:
+        description: Upload id of the pdf
+        required: true
+        type: string
+      tag_name:
+        description: tag of the pdf
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Download the artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dest_pdf
+      - name: Upload Release Asset
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ inputs.name_pdf }}
+          asset_name: ${{ inputs.name_pdf }}
+          tag:        ${{ inputs.tag_name }}
+          release_id: ${{ inputs.release_id }}
+          overwrite: true

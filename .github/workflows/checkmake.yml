@@ -17,3 +17,6 @@ jobs:
           submodules: true
       - name: checkmake action
         uses: Uno-Takashi/checkmake-action@v2
+        with:
+          config: ".github/checkmake.ini"
+          debug: true

@@ -1,0 +1,21 @@
+name: hadolint-reviewdog
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+      - name: hadolint
+        uses: reviewdog/action-hadolint@v1.53.0
+        with:
+          reporter: github-pr-review

@@ -26,7 +26,6 @@
 | ファイル名               | 内容                                                |develop-pr| develop-<br>push | main-pr | main-push | 
 | actionlint-reviewdog.yml | actionlint実施し、問題があればPRにコメントを加えます|   〇     |                 |  〇     |           |
 | hadolint-reviewdog.yml   | hadolint実施し、問題があればPRにコメントを加えます  |   〇     |                 |  〇     |           |
-| checkmake.yml            | checkmake実施し、問題があれば報告します             |   〇     |                 |  〇     |           |
 | release-drafter.yml      | リリースを作成し、バージョンを更新します            |          |                 |         | 〇        |
 
 

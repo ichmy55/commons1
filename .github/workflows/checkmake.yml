@@ -16,4 +16,4 @@ jobs:
         with:
           submodules: true
       - name: checkmake action
-        uses: Uno-Takashi/checkmake-action@main
+        uses: Uno-Takashi/checkmake-action@v2

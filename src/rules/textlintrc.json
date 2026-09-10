@@ -9,7 +9,7 @@
       "preset-ja-spacing": true,
       "prh": {
         "rulePaths": [
-          "src/commons1/rules/prh.yml"
+          "src/commons1/src/rules/prh.yml"
         ]
       }
   }

@@ -1,4 +1,8 @@
 # commons1
+[![Build Status](https://github.com/checkmake/checkmake/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/checkmake/checkmake/actions)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+
+## Overview
 ichmy55配下の各リポジトリに共通するLatex環境作成用ファイルをまとめた
 
 ## CI/CD

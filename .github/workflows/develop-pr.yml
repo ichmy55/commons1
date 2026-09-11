@@ -14,3 +14,5 @@ jobs:
     uses: ./.github/workflows/actionlint-reviewdog.yml
   hadolint-reviewdog:
     uses: ./.github/workflows/hadolint-reviewdog.yml
+  checkmake-action:
+    uses: ./.github/workflows/checkmake-action.yml

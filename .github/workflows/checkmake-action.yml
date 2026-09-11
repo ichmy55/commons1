@@ -1,0 +1,16 @@
+name: checkmake action
+on:
+  workflow_call:
+
+jobs:
+  checkmake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+      - name: checkmake action
+        uses: Uno-Takashi/checkmake-action@v2
+        with:
+          config: ".github/checkmake.ini"

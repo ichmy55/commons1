@@ -1,5 +1,5 @@
 # commons1
-[![Build Status](https://github.com/checkmake/checkmake/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/checkmake/checkmake/actions)
+[![Build Status](https://github.com/ichmy55/commons1/actions/workflows/man-push.yml/badge.svg)](https://github.com/ichmy55/commons1/actions)
 [![GitHub release](https://img.shields.io/github/release/ichmy55/commons1.svg)](https://GitHub.com/ichmy55/commons1/releases/)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)

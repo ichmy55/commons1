@@ -141,7 +141,7 @@ localclean: ## ローカル環境の不要ファイルを消します
 
 localup:
 	cp -rL $(SRCDIR2)/tex/* work/
-	cp -rL $(SRCDIR2)/images work/
+	cp -rL $(SRCDIR3)/images work/
 	cp -rL $(SRCDIR)/* work/
 	cp VERSION.txt  work/
 

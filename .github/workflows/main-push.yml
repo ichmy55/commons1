@@ -1,4 +1,4 @@
-name:  JOBS at push to main
+name: Build
 
 on:
   push:

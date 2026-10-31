@@ -25,6 +25,10 @@ categories:
     semver-increment: "patch"
     when:
       label: ":green_heart: CI/CD"
+  - title: ":wind_face: OS間移植"
+    semver-increment: "patch"
+    when:
+      label: ":wind_face: OS間移植"
   - title: ":book:ドキュメント"
     semver-increment: "patch"
     when:

@@ -31,21 +31,22 @@ help: ## ヘルプを表示する
 	awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 #
 up: ## コンテナを初期化します
-	make down
-	rm -rf .texlive20??
-	if [ $(PACKAGE_USE) -eq 1 ]; then
-		$(DOCKER) pull $(DOCKER_IMAGE)
-		$(DOCKER) run -d -v $(PWD):/home/ubuntu --name $(DOCKER_NAME) $(DOCKER_IMAGE)
-	else
-		$(DOCKER) build . -t $(DOCKER_NAME)
-		$(DOCKER) run -d -v $(PWD):/home/ubuntu --name $(DOCKER_NAME) $(DOCKER_NAME)
+	$(MAKE) down; \
+	rm -rf .texlive20??; \
+	if [ $(PACKAGE_USE) -eq 1 ]; then \
+		$(DOCKER) pull $(DOCKER_IMAGE); \
+		$(DOCKER) run -d -v $(PWD):/home/ubuntu --name $(DOCKER_NAME) $(DOCKER_IMAGE); \
+	else \
+		$(DOCKER) build . -t $(DOCKER_NAME); \
+		$(DOCKER) run -d -v $(PWD):/home/ubuntu --name $(DOCKER_NAME) $(DOCKER_NAME); \
 	fi
-	make remoteclean
+	$(MAKE) remoteclean; \
+	$(MAKE) localup; \
 	$(DOCKER) exec -it $(DOCKER_NAME) luaotfload-tool --update
 #
 up-package: ## コンテナを初期化します（出来合いのパッケージを使います）
 	PACKAGE_USE   := 1
-	make up
+	$(MAKE) up
 #
 stop: ## コンテナを停止します
 	@$(DOCKER) stop $(DOCKER_NAME)
@@ -67,33 +68,32 @@ bash: ## コンテナへログインします
 #
 build: ## latexからpdfにコンパイルします(環境は自動判別)
 ifndef CONTAINER_ENV
-	make remotebuild # Docker外でbuildといえばDocker環境へbuildを投げる、localでしたい場合はlocal-buildとすること
+	$(MAKE) remotebuild # Docker外でbuildといえばDocker環境へbuildを投げる、localでしたい場合はlocal-buildとすること
 else
-	make localbuild
+	$(MAKE) localbuild
 endif
 #
 lint: ## latexをLintにかけます(環境は自動判別)
 ifndef CONTAINER_ENV
-	make remotelint  # Docker外でlintといえばDocker環境へbuildを投げる、localでしたい場合はlocal-lintとすること
+	$(MAKE) remotelint  # Docker外でlintといえばDocker環境へbuildを投げる、localでしたい場合はlocal-lintとすること
 else
-	make local-lint
+	$(MAKE) local-lint
 endif
 #
 clean: ## データ整理(環境は自動判別)
 ifndef CONTAINER_ENV
-	make remoteclean # Docker外でcleanといえばDocker環境へbuildを投げる、localでしたい場合はlocalcleanとすること
+	$(MAKE) remoteclean # Docker外でcleanといえばDocker環境へbuildを投げる、localでしたい場合はlocalcleanとすること
 else
-	make localclean
+	$(MAKE) localclean
 endif
 #
 # コンテナ環境下でのビルド関連ターゲット
 #
 remotebuild: ## コンテナ環境にてlatexからpdfにコンパイルします
-	make remoteclean
 	@$(DOCKER) exec -it $(DOCKER_NAME) make localbuild
 #
 remotelint: ## コンテナ環境にてlatexをLintにかけます
-	make remoteclean
+	$(MAKE) remoteclean
 	@$(DOCKER) exec -it $(DOCKER_NAME) make local-lint
 #
 remoteclean: ## コンテナ上のデータ整理
@@ -105,8 +105,6 @@ localbuild: pdf-files ## ローカル環境下でlatex→pdfにコンパイル�
 
 pdf-files: $(addprefix dist/,$(addsuffix .pdf,$(DEST_PDF)))
 $(addprefix dist/,$(addsuffix .pdf,$(DEST_PDF))) : $(SRCS5)
-	make localclean; \
-	make localup; \
 	cd work; \
 	$(LATEXENG)  000-main.tex; \
 	$(BIBTEXENG) 000-main; \
@@ -128,7 +126,7 @@ localup:
 	cp VERSION.txt  work/
 #
 distclean: ## ローカル環境の不要ファイルを消し、latexのフォントキャッシュも消します
-	make localclean &&     \
+	$(MAKE) localclean &&     \
 	rm -rf  .texlive20?? .bash_history
 #
 name: ## 生成するスライド名を出力します

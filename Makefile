@@ -2,7 +2,6 @@
 # ターゲット一覧
 #
 .PHONY: help up up-package stop down ps bash build lint clean remotebuild remotelint remoteclean localbuild local-lint localclean distclean name localup pdf-files
-.ONESHELL: up
 .DEFAULT_GOAL := help
 
 #
